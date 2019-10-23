@@ -6,7 +6,13 @@ module.exports = {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true
+      },
+      id_character_original: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        unique: true
       },
       name: {
         type: Sequelize.STRING,
@@ -15,6 +21,26 @@ module.exports = {
       image: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      origin: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      location: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      episode: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
+        allowNull: false
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: true
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        allowNull: true
       }
     })
   },

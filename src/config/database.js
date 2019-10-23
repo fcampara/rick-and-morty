@@ -11,7 +11,8 @@ const database = {
     timestamps: true,
     underscored: true,
     underscoredAll: true
-  }
+  },
+  loggin: console.log
 }
 
 module.exports = database
