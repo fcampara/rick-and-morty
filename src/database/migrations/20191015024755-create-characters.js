@@ -18,6 +18,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      dimensions_count: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+      },
       image: {
         type: Sequelize.STRING,
         allowNull: false

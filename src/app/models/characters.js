@@ -4,6 +4,7 @@ class characters extends Model {
   static init (sequelize) {
     super.init({
       name: Sequelize.STRING,
+      dimensionsCount: Sequelize.INTEGER,
       idCharacterOriginal: Sequelize.INTEGER,
       origin: Sequelize.STRING,
       location: Sequelize.STRING,

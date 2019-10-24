@@ -8,7 +8,7 @@ class Cron {
   }
 
   async init () {
-    this.job = cron.schedule('0 0 0/8 1/1 * *', async () => {
+    this.job = cron.schedule('8 * * * * *', async () => {
       const URL = 'https://rickandmortyapi.com/api/character/'
       const results = []
       const { data } = await axios.get(URL)
@@ -28,15 +28,19 @@ class Cron {
 
   async updateDatabase (characteres) {
     for (const character of characteres) {
+      const dimensionsCount = characteres.filter((element) => element.name.toLowerCase() === character.name.toLowerCase()).length
       const { id, name, location, origin, episode, image } = character
+
       const payload = {
-        idCharacterOriginal: id,
-        location: location.name,
-        origin: origin.name,
-        image,
         name,
-        episode
+        image,
+        episode,
+        dimensionsCount,
+        origin: origin.name,
+        idCharacterOriginal: id,
+        location: location.name
       }
+
       const hasCharacter = await Characteres.findOne({ where: { id_character_original: id } })
 
       await hasCharacter ? hasCharacter.update(payload) : Characteres.create(payload)
