@@ -28,6 +28,7 @@ describe('Cron Jobs', () => {
     await sleep(1000)
     expect(callback).toHaveBeenCalledTimes(1)
     expect(Cron.status).toEqual('scheduled')
+    Cron.destroy()
     done()
   })
 
@@ -35,6 +36,7 @@ describe('Cron Jobs', () => {
     const Cron = new CronLib(cronTime)
     Cron.init()
     expect(Cron.status).toEqual('failed')
+    Cron.destroy()
   })
 
   test('Should be run job', async (done) => {
@@ -48,6 +50,7 @@ describe('Cron Jobs', () => {
     await Cron.getInformations(URL)
 
     expect(CronLib.prototype.updateDatabase).toBeCalled()
+    Cron.destroy()
     done()
   })
 
@@ -55,12 +58,14 @@ describe('Cron Jobs', () => {
     const Cron = new CronLib(cronTime)
     Cron.init(URL).start()
     expect(Cron.status).toEqual('scheduled')
+    Cron.destroy()
   })
 
   test('Should be failed in start job', () => {
     const Cron = new CronLib(cronTime)
     const response = Cron.start()
     expect(response).toEqual('You need first initilize a job')
+    Cron.destroy()
   })
 
   test('Should be destroy a job', () => {
@@ -117,11 +122,27 @@ describe('Cron Jobs', () => {
     done()
   })
 
-  test('Should be can update or create character', () => {
+  test('Should be can update character', async (done) => {
     const findOne = jest.spyOn(Model, 'findOne')
+    findOne.mockResolvedValue({
+      update: () => ({ qualquer: 'coisa' })
+    })
+
     const Cron = new CronLib(cronTime)
 
-    const result = Cron.resolveCharacteres(rickAndMortyResolved, rickAndMortyResolved.idCharacterOriginal)
-    console.log(result)
+    const result = await Cron.resolveCharacteres(rickAndMortyResolved, rickAndMortyResolved.idCharacterOriginal)
+    expect(result).toBeTruthy()
+    done()
+  })
+
+  test('Should be create character', async (done) => {
+    const create = jest.spyOn(Model, 'create')
+    create.mockResolvedValue({})
+
+    const Cron = new CronLib(cronTime)
+
+    const result = await Cron.resolveCharacteres(rickAndMortyResolved, rickAndMortyResolved.idCharacterOriginal)
+    expect(result).toBeTruthy()
+    done()
   })
 })

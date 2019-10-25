@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize'
 
-class characters extends Model {
+class Characters extends Model {
   static init (sequelize) {
     super.init({
       name: Sequelize.STRING,
@@ -17,4 +17,4 @@ class characters extends Model {
   }
 }
 
-export default characters
+export default Characters

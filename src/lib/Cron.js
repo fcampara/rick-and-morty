@@ -1,5 +1,5 @@
 import cron from 'node-cron'
-import Characteres from '../app/models/characters'
+import Characteres from '../app/models/Characters'
 import axios from 'axios'
 
 class Cron {
