@@ -12,19 +12,19 @@ module.exports = {
   // browser: false,
 
   // The directory where Jest should store its cached dependency information
-  // cacheDirectory: "/private/var/folders/s5/mq_wvtc11w13hz72r6c0lp780000gn/T/jest_dx",
+  // cacheDirectory: "/private/var/folders/rc/clx63gfd7bv86yz456nlvp4r0000gn/T/jest_dx",
 
   // Automatically clear mock calls and instances between every test
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: false,
+  collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  collectCoverageFrom: ['src/app/**/*.js'],
+  collectCoverageFrom: ['src/app/**/*.js', 'src/lib/Cron.js'],
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: 'coverage',
+  coverageDirectory: '__tests__/coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -33,8 +33,8 @@ module.exports = {
 
   // A list of reporter names that Jest uses when writing coverage reports
   coverageReporters: [
-    'json',
-    'text'
+    'text',
+    'lcov'
   ],
 
   // An object that configures minimum threshold enforcement for coverage results
@@ -167,7 +167,6 @@ module.exports = {
   transform: {
     '.(js|jsx|ts|tsx)': '@sucrase/jest-plugin'
   }
-
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
   //   "/node_modules/"
