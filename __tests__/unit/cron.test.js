@@ -1,6 +1,8 @@
 import { Model } from 'sequelize'
 
+import '../../src/database'
 import CronLib from '../../src/lib/Cron'
+
 import axios from 'axios'
 
 import { sleep } from '../utils/helper'
