@@ -127,7 +127,7 @@ describe('Cron Jobs', () => {
   test('Should be can update character', async (done) => {
     const findOne = jest.spyOn(Model, 'findOne')
     findOne.mockResolvedValue({
-      update: () => ({ qualquer: 'coisa' })
+      update: () => ({ character: 'mock' })
     })
 
     const Cron = new CronLib(cronTime)
