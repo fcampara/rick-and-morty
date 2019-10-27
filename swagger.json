@@ -1,0 +1,140 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a simple API",
+    "version": "1.0.0",
+    "title": "Rick and Morty - Doppelgangers"
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/character": {
+      "get": {
+        "tags": [
+          "characteres"
+        ],
+        "summary": "Search Characteres",
+        "description": "By passing in the appropriate options, you can search for\navailable characteres in the system\n",
+        "operationId": "searchCharacter",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "idCharacterOriginal",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dimesionsCount",
+            "in": "query",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "name": "origin",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "search results matching criteria",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Character"
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Character": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "number",
+          "example": 1
+        },
+        "idCharacterOriginal": {
+          "type": "integer",
+          "format": "number",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "Rick Sanchez"
+        },
+        "dimesionsCount": {
+          "type": "integer",
+          "format": "number",
+          "example": 1
+        },
+        "image": {
+          "type": "string",
+          "format": "url",
+          "example": "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+        },
+        "origin": {
+          "type": "string",
+          "example": "Earth (C-137)"
+        },
+        "location": {
+          "type": "string",
+          "example": "Earth (Replacement Dimension)"
+        },
+        "episode": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "url",
+            "example": "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
