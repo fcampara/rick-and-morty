@@ -1,5 +1,12 @@
 const dotenv = require('dotenv')
 
-dotenv.config({
-  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
-})
+const getPath = () => {
+  switch (process.env.NODE_ENV) {
+    case 'production': return '.env'
+    case 'development': return '.env.dev'
+  }
+}
+
+const path = getPath()
+
+dotenv.config({ path })
